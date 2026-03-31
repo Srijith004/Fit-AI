@@ -1,0 +1,164 @@
+{
+  "users": [
+    {
+      "id": "2f06ac10-ebc9-4027-92ef-bbd81670f04c",
+      "name": "Srijith S",
+      "age": "21",
+      "gender": "male",
+      "height": "178.14",
+      "weight": "83.2",
+      "goal": "maintain",
+      "activity_level": "active",
+      "fitness_level": "intermediate",
+      "diet_type": "",
+      "created_at": "2026-02-22T08:08:34.347Z",
+      "updated_at": "2026-02-22T08:25:31.882Z"
+    },
+    {
+      "id": "7aefcf18-a0cc-46b2-af84-d7ffe3237e2a",
+      "name": "Srijith S",
+      "email": "srijithswaminathan22@gmail.com",
+      "password_hash": "$2b$10$iGWvE8OorzKKuNadFnirBOKSsiX1AE3a2vVPTKWIdXXmXv3KT/f2C",
+      "friend_code": "FIT-28FTHF",
+      "fitness_level": "intermediate",
+      "diet_type": "",
+      "created_at": "2026-02-22T08:45:32.162Z",
+      "updated_at": "2026-03-31T09:10:30.905Z",
+      "allergies": "",
+      "age": "2005",
+      "gender": "male",
+      "height": "177",
+      "weight": "83.3",
+      "goal": "maintain",
+      "activity_level": "active"
+    },
+    {
+      "id": "cb49f2b4-f567-4296-b85f-78e7371d493b",
+      "name": "Pranesh k",
+      "email": "praneshkumar2375@gmail.com",
+      "password_hash": "$2b$10$E0ifQ9jb.SRwXoGKFK/Gte6.65DVuaQuhQnAIIfCNhwb2hMX6Sks.",
+      "friend_code": "FIT-LFK8RT",
+      "fitness_level": "intermediate",
+      "diet_type": "standard",
+      "created_at": "2026-02-22T08:56:57.045Z",
+      "updated_at": "2026-03-07T00:52:53.258Z",
+      "allergies": "",
+      "age": "20",
+      "gender": "male",
+      "height": "170",
+      "weight": "81",
+      "target_weight": "70",
+      "goal": "maintain",
+      "activity_level": "moderate"
+    },
+    {
+      "id": "b40c2bbe-0da0-4ea8-ab7f-a9a5cb528fee",
+      "name": "Parthi",
+      "age": "2005",
+      "gender": "male",
+      "height": "177.3",
+      "weight": "73.4",
+      "goal": "maintain",
+      "activity_level": "active",
+      "fitness_level": "intermediate",
+      "diet_type": "",
+      "allergies": "",
+      "created_at": "2026-03-31T09:10:13.265Z",
+      "updated_at": "2026-03-31T09:10:13.274Z"
+    }
+  ],
+  "meals": [],
+  "workouts": [],
+  "water_log": [
+    {
+      "id": "478eddf4-82fa-4ba3-aa41-653a65d8b7a6",
+      "user_id": "cb49f2b4-f567-4296-b85f-78e7371d493b",
+      "date": "2026-02-22",
+      "glasses": 1,
+      "target": "cb49f2b4-f567-4296-b85f-78e7371d493b",
+      "updated_at": "2026-02-22T08:57:08.371Z"
+    },
+    {
+      "id": "97ab83fb-df03-40e4-96f7-7d9f0ea1655a",
+      "user_id": "7aefcf18-a0cc-46b2-af84-d7ffe3237e2a",
+      "date": "2026-02-23",
+      "glasses": null,
+      "target": "7aefcf18-a0cc-46b2-af84-d7ffe3237e2a",
+      "updated_at": "2026-02-23T04:55:32.449Z"
+    },
+    {
+      "id": "8abdc6b6-5e37-4fc3-919f-5690ceb774f3",
+      "user_id": "cb49f2b4-f567-4296-b85f-78e7371d493b",
+      "date": "2026-03-06",
+      "glasses": null,
+      "target": "cb49f2b4-f567-4296-b85f-78e7371d493b",
+      "updated_at": "2026-03-06T17:45:21.325Z"
+    }
+  ],
+  "steps_log": [],
+  "goals": [
+    {
+      "id": "b89f70d2-7891-42ef-bb64-a40217900ebc",
+      "user_id": "2f06ac10-ebc9-4027-92ef-bbd81670f04c",
+      "weekly_workouts": 5,
+      "daily_calories": 0,
+      "daily_water": 8,
+      "updated_at": "2026-02-22T08:08:34.347Z"
+    },
+    {
+      "id": "981b98cf-4509-4714-b6fe-a417daa03002",
+      "user_id": "7aefcf18-a0cc-46b2-af84-d7ffe3237e2a",
+      "weekly_workouts": 5,
+      "daily_calories": 0,
+      "daily_water": 8,
+      "updated_at": "2026-02-22T08:45:32.162Z"
+    },
+    {
+      "id": "46deb37c-1f17-4de7-aa6c-0cc390d4f3cc",
+      "user_id": "cb49f2b4-f567-4296-b85f-78e7371d493b",
+      "weekly_workouts": 5,
+      "daily_calories": 0,
+      "daily_water": 8,
+      "updated_at": "2026-02-22T08:56:57.045Z"
+    },
+    {
+      "id": "e321b5e0-4014-4c0b-a342-efc2962fd6b8",
+      "user_id": "b40c2bbe-0da0-4ea8-ab7f-a9a5cb528fee",
+      "weekly_workouts": 5,
+      "daily_calories": 0,
+      "daily_water": 8,
+      "updated_at": "2026-03-31T09:10:13.265Z"
+    }
+  ],
+  "streaks": [
+    {
+      "id": "dd4a00dd-a756-4012-9149-aa65b61e0a26",
+      "user_id": "2f06ac10-ebc9-4027-92ef-bbd81670f04c",
+      "current": 0,
+      "longest": 0,
+      "last_log_date": null
+    },
+    {
+      "id": "32042376-6349-4a04-b6c1-be54d19ffc85",
+      "user_id": "7aefcf18-a0cc-46b2-af84-d7ffe3237e2a",
+      "current": 0,
+      "longest": 0,
+      "last_log_date": null
+    },
+    {
+      "id": "6b37acd6-9466-4bb0-8edf-0af17d9d7473",
+      "user_id": "cb49f2b4-f567-4296-b85f-78e7371d493b",
+      "current": 0,
+      "longest": 0,
+      "last_log_date": null
+    },
+    {
+      "id": "8b068d5e-a473-4862-afa3-8c657fd5d9bb",
+      "user_id": "b40c2bbe-0da0-4ea8-ab7f-a9a5cb528fee",
+      "current": 0,
+      "longest": 0,
+      "last_log_date": null
+    }
+  ],
+  "friends": []
+}

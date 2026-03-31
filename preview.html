@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Fitness Planner - Preview</title>
+    <style>
+        /* Copied from src/index.css */
+        :root {
+            --bg-color: #050505;
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --primary: #00f2ea;
+            --secondary: #ff0050;
+            --accent: #7000ff;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-family);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        #app {
+            width: 100%;
+            max-width: 480px;
+            /* Mobile width simulation */
+            padding: 20px;
+            box-sizing: border-box;
+            position: relative;
+            padding-bottom: 80px;
+            /* Space for nav */
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Utilities */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .flex-col-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .btn-water {
+            background: rgba(0, 242, 234, 0.2);
+            color: #00f2ea;
+            border-radius: 20px;
+            padding: 8px 16px;
+        }
+
+        .btn-water:hover {
+            background: rgba(0, 242, 234, 0.3);
+        }
+
+        /* Nav Bar */
+        .nav-bar {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 440px;
+            height: 60px;
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 100;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-item {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        .nav-icon {
+            font-size: 1.5rem;
+            margin-bottom: 2px;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--secondary);
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- Rendered Content will go here -->
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-bar">
+        <div class="nav-item active" onclick="navigate('dashboard')">
+            <span class="nav-icon">🏠</span>
+            <span>Home</span>
+        </div>
+        <div class="nav-item" onclick="navigate('diet')">
+            <span class="nav-icon">🍎</span>
+            <span>Diet</span>
+        </div>
+        <div class="nav-item" onclick="navigate('fitness')">
+            <span class="nav-icon">💪</span>
+            <span>Fitness</span>
+        </div>
+        <div class="nav-item" onclick="navigate('social')">
+            <span class="nav-icon">👥</span>
+            <span>Social</span>
+        </div>
+    </div>
+
+    <script>
+        // Mock Data
+        const user = {
+            name: "Alex",
+            goal: "Muscle Gain"
+        };
+
+        const activity = {
+            water: 3,
+            streak: { current: 5 },
+            workouts: [],
+            meals: [1, 2] // Mock 2 meals
+        };
+
+        const tdee = 2500;
+
+        function calculateBMI() {
+            return 22.5; // Mock
+        }
+
+        function renderDashboard() {
+            const caloriesConsumed = activity.meals.length * 500;
+            const progress = (caloriesConsumed / tdee) * 100;
+
+            return `
+                <div class="flex-between" style="margin-bottom: 20px;">
+                    <div>
+                        <h1 class="text-gradient" style="margin: 0; font-size: 2rem;">Hello, ${user.name}</h1>
+                        <p style="color: var(--text-muted); margin: 0;">Goal: ${user.goal}</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">${activity.streak.current} 🔥</div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted);">Day Streak</div>
+                    </div>
+                </div>
+
+                <div class="glass-panel">
+                    <div class="flex-between" style="margin-bottom: 10px;">
+                        <span style="font-size: 1.1rem; font-weight: 600;">Daily Calorie Goal</span>
+                        <span style="color: var(--secondary);">${caloriesConsumed} / ${tdee} kcal</span>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-fill" style="width: ${progress}%"></div>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="glass-panel flex-col-center">
+                        <span style="font-size: 2rem; color: #00f2ea;">💧</span>
+                        <div style="font-size: 1.5rem; font-weight: bold;" id="water-count">${activity.water} / 8</div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted);">Glasses</div>
+                        <button class="btn btn-water" onclick="drinkWater()">+ Drink</button>
+                    </div>
+
+                    <div class="glass-panel flex-col-center">
+                        <span style="font-size: 2rem; color: #ff0050;">⚖️</span>
+                        <div style="font-size: 1.5rem; font-weight: bold;">${calculateBMI()}</div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted);">BMI Score</div>
+                        <div style="font-size: 0.7rem; color: #888;">Normal</div>
+                    </div>
+                </div>
+
+                <h3 style="margin-bottom: 15px;">Today's Activity</h3>
+                <div class="glass-panel" style="text-align: center; padding: 30px;">
+                    <p style="color: var(--text-muted);">No workouts logged today.</p>
+                    <p style="font-size: 0.9rem;">Go to Fitness tab to start!</p>
+                </div>
+            `;
+        }
+
+        function renderPlaceholder(title) {
+            return `
+                <h1 class="text-gradient">${title}</h1>
+                <div class="glass-panel">
+                    <p>This is a preview of the ${title} page.</p>
+                    <p style="color: var(--text-muted);">Install Node.js to run the full application logic.</p>
+                </div>
+            `;
+        }
+
+        function navigate(page) {
+            const app = document.getElementById('app');
+            const items = document.querySelectorAll('.nav-item');
+
+            // Update nav active state
+            items.forEach(item => item.classList.remove('active'));
+            // Simple mapping for demo
+            const index = ['dashboard', 'diet', 'fitness', 'social'].indexOf(page);
+            if (index >= 0) items[index].classList.add('active');
+
+            if (page === 'dashboard') {
+                app.innerHTML = renderDashboard();
+            } else {
+                app.innerHTML = renderPlaceholder(page.charAt(0).toUpperCase() + page.slice(1));
+            }
+        }
+
+        function drinkWater() {
+            if (activity.water < 8) {
+                activity.water++;
+                document.getElementById('water-count').innerText = `${activity.water} / 8`;
+            }
+        }
+
+        // Init
+        navigate('dashboard');
+
+    </script>
+</body>
+
+</html>
